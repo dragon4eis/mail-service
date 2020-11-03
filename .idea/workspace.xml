@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="92718d44-84ce-43c5-bf45-4764389ca753" name="Default Changelist" comment="" />
+    <list default="true" id="92718d44-84ce-43c5-bf45-4764389ca753" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,7 +20,7 @@
     <option name="NEW_BASE" value="feature/mail-survice" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/mail-service" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4">
     <include_path>
@@ -144,7 +147,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
@@ -163,7 +166,7 @@
       <updated>1604345141843</updated>
       <workItem from="1604345142912" duration="144000" />
       <workItem from="1604406496699" duration="936000" />
-      <workItem from="1604431277718" duration="1144000" />
+      <workItem from="1604431277718" duration="1461000" />
     </task>
     <servers />
   </component>
@@ -171,30 +174,46 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="247" y="27" width="1822" height="1210" key="CommitChangelistDialog2" timestamp="1604433868669">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="247" y="27" width="1822" height="1210" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1604433868669" />
     <state x="382" y="597" width="515" height="314" key="ComposerInitDialogKey" timestamp="1604433359237">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="382" y="597" width="515" height="314" key="ComposerInitDialogKey/0.0.2560.1400@0.0.2560.1400" timestamp="1604433359237" />
-    <state width="1224" height="388" key="GridCell.Tab.0.bottom" timestamp="1604433530185">
+    <state x="1007" y="378" key="FileChooserDialogImpl" timestamp="1604433807722">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1224" height="388" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1604433530185" />
-    <state width="1224" height="388" key="GridCell.Tab.0.center" timestamp="1604433530184">
+    <state x="1007" y="378" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1604433807722" />
+    <state x="1132" y="571" key="Github.ShareDialog" timestamp="1604433894782">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1224" height="388" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1604433530184" />
-    <state width="1224" height="388" key="GridCell.Tab.0.left" timestamp="1604433530184">
+    <state x="1132" y="571" key="Github.ShareDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1604433894782" />
+    <state x="1001" y="337" key="Github.UntrackedFilesDialog" timestamp="1604433907574">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1224" height="388" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1604433530184" />
-    <state width="1224" height="388" key="GridCell.Tab.0.right" timestamp="1604433530185">
+    <state x="1001" y="337" key="Github.UntrackedFilesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1604433907574" />
+    <state width="1224" height="388" key="GridCell.Tab.0.bottom" timestamp="1604433950568">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1224" height="388" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1604433530185" />
-    <state x="671" y="258" key="SettingsEditor" timestamp="1604433342773">
+    <state width="1224" height="388" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1604433950568" />
+    <state width="1224" height="388" key="GridCell.Tab.0.center" timestamp="1604433950568">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="671" y="258" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1604433342773" />
+    <state width="1224" height="388" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1604433950568" />
+    <state width="1224" height="388" key="GridCell.Tab.0.left" timestamp="1604433950568">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1224" height="388" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1604433950568" />
+    <state width="1224" height="388" key="GridCell.Tab.0.right" timestamp="1604433950568">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1224" height="388" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1604433950568" />
+    <state x="671" y="258" key="SettingsEditor" timestamp="1604433982628">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="671" y="258" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1604433982628" />
     <state x="772" y="367" key="Vcs.Push.Dialog.v2" timestamp="1604406508417">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
