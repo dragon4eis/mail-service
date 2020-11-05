@@ -7,7 +7,6 @@ namespace App\Classes\Mailers\SendGrid;
 use App\Classes\Mailers\ConstructMailBody;
 use App\Classes\Mailers\Mailable;
 use Exception;
-use Illuminate\Support\Arr;
 use SendGrid\Mail\Mail;
 use SendGrid\Mail\TypeException;
 

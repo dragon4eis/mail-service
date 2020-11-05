@@ -3,14 +3,14 @@
 namespace Tests\Unit;
 
 use App\Classes\Mailers\EmailContentType;
+use App\Classes\Mailers\MailJet\ContentTypes\MailJetEmailContentType;
+use App\Classes\Mailers\MailJet\MailJetSender;
 use App\Classes\Mailers\MailServiceFactory;
-use App\Classes\Mailers\SendGrid\ContentTypes\SendGridEmailContentType;
-use App\Classes\Mailers\SendGrid\SendGridSender;
 use Tests\TestCase;
 
-class SendGridTest extends TestCase
+class MailJetSenderTest extends TestCase
 {
-    private SendGridSender $senderService;
+    private MailJetSender $senderService;
     private array $sender;
     private array $recipients;
 
@@ -19,21 +19,22 @@ class SendGridTest extends TestCase
      *
      * @return void
      */
-    public function testSendgridSender()
+    public function testMailJetSender()
     {
+        //create text mail known email address
         $isMailSend = $this->senderService
-            ->setMail($this->sender, $this->recipients, 'Test', 'text/plain', "test")
+            ->setMail( $this->sender,  $this->recipients, 'Test', 'TextPart', "test")
             ->send();
         $this->assertTrue($isMailSend);
     }
 
-    public function testSendGridContentTypes(){
-        $this->assertSame("text/html",  (new SendGridEmailContentType(EmailContentType::MAIL_FORMAT_HTML))->getTypeAsText());
-        $this->assertSame("text/plain",  (new SendGridEmailContentType(EmailContentType::MAIL_FORMAT_TEXT))->getTypeAsText());
+    public function testMailJestContentTypes(){
+        $this->assertSame('HTMLPart',  (new MailJetEmailContentType(EmailContentType::MAIL_FORMAT_HTML))->getTypeAsText());
+        $this->assertSame('TextPart',  (new MailJetEmailContentType(EmailContentType::MAIL_FORMAT_TEXT))->getTypeAsText());
     }
 
-    public function testSendGridHTMLMail(){
-        $mailService = MailServiceFactory::getService(MailServiceFactory::SEND_GRID_MAIL_SERVICE);
+    public function testMailJestHtmlMessage(){
+        $mailService = MailServiceFactory::getService(MailServiceFactory::MAIL_JET_MAIL_SERVICE);
         $this->assertTrue($mailService->sendEmail(
             $this->sender,
             $this->recipients,
@@ -46,7 +47,7 @@ class SendGridTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->senderService = new SendGridSender();
+        $this->senderService = new MailJetSender();
         $this->sender = [
             'name' => config('mail.from.name'),
             'address' => config('mail.from.address')

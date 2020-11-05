@@ -52,7 +52,7 @@ final class MailJetMail implements Mailable
 
     public function setSubject(string $subject)
     {
-        $this->mail['To']['Subject'] = $subject;
+        $this->mail['Subject'] = $subject;
     }
 
     public function setMessage(string $type, string $message)

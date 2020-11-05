@@ -27,11 +27,14 @@ final class SendGridSender
      * @param string $message
      *
      * @return $this
-     * @throws SendGrid\Mail\TypeException|Exception
      */
     public function setMail(array $from, array $to, string $subject, string $contentType, string $message)
     {
-        $this->mail = (new SendGridMail($from, $to, $subject, $contentType, $message))->getMail();
+        try {
+            $this->mail = (new SendGridMail($from, $to, $subject, $contentType, $message))->getMail();
+        } catch (\Exception $exception){
+            Log::critical($exception);
+        }
         return $this;
     }
 
@@ -44,6 +47,9 @@ final class SendGridSender
     {
         try {
             $response = $this->sendGrid->send($this->mail);
+            if ($response->statusCode() !== 202) {
+                Log::error($response->body());
+            }
             return $response->statusCode() === 202;
         } catch (\Exception $exception) {
             Log::critical($exception);

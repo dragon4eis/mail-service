@@ -27,7 +27,6 @@ final class MailJetSender
      * @param string $message
      *
      * @return MailJetSender
-     * @throws \SendGrid\Mail\TypeException
      */
     public function setMail(array $from, array $to, string $subject, string $contentType, string $message){
         $this->mails[] = (new MailJetMail($from, $to, $subject, $contentType, $message))->getMail();
@@ -40,6 +39,9 @@ final class MailJetSender
     public function send(): bool{
         try {
             $response = $this->mailJet->post(Resources::$Email, ['body' => ['Messages' => $this->mails] ]);
+            if(!$response->success()){
+                Log::error($response->getData());
+            }
             return $response->success();
         } catch (\Exception $exception){
             Log::critical($exception);
