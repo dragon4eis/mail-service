@@ -7,7 +7,7 @@ namespace App\Classes\Mailers\SendGrid\ContentTypes;
 use App\Classes\Mailers\EmailContentType;
 use Exception;
 
-class SendGridEmailContentType implements EmailContentType
+final class SendGridEmailContentType implements EmailContentType
 {
     private $type;
 

@@ -6,7 +6,7 @@ namespace App\Classes\Mailers\MailJet\ContentTypes;
 
 use App\Classes\Mailers\EmailContentType;
 
-class MailJetEmailContentType implements EmailContentType
+final class MailJetEmailContentType implements EmailContentType
 {
     private $type;
 
