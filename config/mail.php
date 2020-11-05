@@ -107,4 +107,13 @@ return [
         ],
     ],
 
+    'automated_providers' => [
+        'sendgrid' => [
+            'api_key' => env('SENDGRID_API_KEY')
+        ],
+        'mailjet' => [
+            'public_api_key' => env('MJ_APIKEY_PUBLIC'),
+            'private_api_key' => env('MJ_APIKEY_PRIVATE'),
+        ]
+    ]
 ];
