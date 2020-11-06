@@ -5,6 +5,7 @@ namespace App\Classes\Mailers\SendGrid;
 
 
 use App\Classes\Mailers\ConstructMailBody;
+use App\Classes\Mailers\EmailContent;
 use App\Classes\Mailers\Mailable;
 use Exception;
 use SendGrid\Mail\Mail;
@@ -26,10 +27,10 @@ final class SendGridMail implements Mailable
      *
      * @throws TypeException
      */
-    public function __construct(array $from, array $to, string $subject, string $contentType, string $message)
+    public function __construct(array $from, array $to, string $subject, EmailContent $emailContent)
     {
         $this->mail = new Mail();
-        $this->constructBody($from,$to,$subject, $contentType, $message);
+        $this->constructBody($from,$to,$subject, $emailContent);
     }
 
     public function getMail(){
@@ -84,12 +85,11 @@ final class SendGridMail implements Mailable
     /**
      * Set mail message
      *
-     * @param string $type
-     * @param string $message
+     * @param EmailContent $emailContent
      *
      * @throws TypeException
      */
-    public function setMessage(string $type, string  $message){
-        $this->mail->addContent($type, $message);
+    public function setMessage(EmailContent $emailContent){
+        $this->mail->addContent($emailContent->getTypeAsText(), $emailContent->getMessageText());
     }
 }

@@ -4,6 +4,7 @@
 namespace App\Classes\Mailers\SendGrid;
 
 
+use App\Classes\Mailers\EmailContent;
 use Illuminate\Support\Facades\Log;
 use SendGrid;
 
@@ -20,18 +21,17 @@ final class SendGridSender
     /**\
      * Creates sendGridMAil message
      *
-     * @param array  $from
-     * @param array  $to
-     * @param string $subject
-     * @param string $contentType
-     * @param string $message
+     * @param array        $from
+     * @param array        $to
+     * @param string       $subject
+     * @param EmailContent $emailContent
      *
      * @return $this
      */
-    public function setMail(array $from, array $to, string $subject, string $contentType, string $message)
+    public function setMail(array $from, array $to, string $subject, EmailContent $emailContent)
     {
         try {
-            $this->mail = (new SendGridMail($from, $to, $subject, $contentType, $message))->getMail();
+            $this->mail = (new SendGridMail($from, $to, $subject, $emailContent))->getMail();
         } catch (\Exception $exception){
             Log::critical($exception);
         }

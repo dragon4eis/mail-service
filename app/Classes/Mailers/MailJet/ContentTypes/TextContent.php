@@ -4,12 +4,12 @@
 namespace App\Classes\Mailers\MailJet\ContentTypes;
 
 
-use App\Classes\Mailers\MessageType;
+use App\Classes\Mailers\Message;
 
-final class HTMLContentType extends MessageType
+final class TextContent extends Message
 {
     public function getMessageType(): string
     {
-        return  "HTMLPart";
+       return "TextPart";
     }
 }

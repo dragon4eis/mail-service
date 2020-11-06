@@ -4,6 +4,7 @@
 namespace App\Classes\Mailers\MailJet;
 
 
+use App\Classes\Mailers\EmailContent;
 use Illuminate\Support\Facades\Log;
 use Mailjet\Client;
 use Mailjet\Resources;
@@ -20,16 +21,15 @@ final class MailJetSender
 
 
     /**
-     * @param array  $from
-     * @param array  $to
-     * @param string $subject
-     * @param string $contentType
-     * @param string $message
+     * @param array        $from
+     * @param array        $to
+     * @param string       $subject
+     * @param EmailContent $emailContent
      *
      * @return MailJetSender
      */
-    public function setMail(array $from, array $to, string $subject, string $contentType, string $message){
-        $this->mails[] = (new MailJetMail($from, $to, $subject, $contentType, $message))->getMail();
+    public function setMail(array $from, array $to, string $subject, EmailContent $emailContent){
+        $this->mails[] = (new MailJetMail($from, $to, $subject, $emailContent))->getMail();
         return $this;
     }
 

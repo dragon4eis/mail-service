@@ -4,9 +4,9 @@
 namespace App\Classes\Mailers\SendGrid\ContentTypes;
 
 
-use App\Classes\Mailers\MessageType;
+use App\Classes\Mailers\Message;
 
-final class HTMLContentType extends MessageType
+final class HTMLContent extends Message
 {
     public function getMessageType(): string
     {

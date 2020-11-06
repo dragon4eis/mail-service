@@ -44,10 +44,9 @@ interface Mailable
     /**
      * Set mail message
      *
-     * @param string $type
-     * @param string $message
+     * @param EmailContent $emailContent
      *
      * @throws TypeException
      */
-    public function setMessage(string $type, string  $message);
+    public function setMessage(EmailContent $emailContent);
 }

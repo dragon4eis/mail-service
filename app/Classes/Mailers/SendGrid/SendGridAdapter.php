@@ -5,7 +5,7 @@ namespace App\Classes\Mailers\SendGrid;
 
 
 use App\Classes\Mailers\SendEmail;
-use App\Classes\Mailers\SendGrid\ContentTypes\SendGridEmailContentType;
+use App\Classes\Mailers\SendGrid\ContentTypes\SendGridEmailContent;
 
 final class SendGridAdapter implements SendEmail
 {
@@ -18,9 +18,8 @@ final class SendGridAdapter implements SendEmail
 
     public function sendEmail(array $from, array $recipients, string $subject, string $contentType, string $message): bool
     {
-        $mailType = new SendGridEmailContentType($contentType);
         return $this->sender
-            ->setMail($from, $recipients, $subject, $mailType->getTypeAsText(), $message)
+            ->setMail($from, $recipients, $subject,  new SendGridEmailContent($contentType, $message))
             ->send();
     }
 }

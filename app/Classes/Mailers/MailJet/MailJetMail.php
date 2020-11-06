@@ -5,6 +5,7 @@ namespace App\Classes\Mailers\MailJet;
 
 
 use App\Classes\Mailers\ConstructMailBody;
+use App\Classes\Mailers\EmailContent;
 use App\Classes\Mailers\Mailable;
 use Exception;
 
@@ -13,9 +14,9 @@ final class MailJetMail implements Mailable
     use ConstructMailBody;
     private array $mail;
 
-    public function __construct(array $from, array $to, string $subject, string $contentType, string $message)
+    public function __construct(array $from, array $to, string $subject, EmailContent $emailContent)
     {
-        $this->constructBody($from,$to,$subject, $contentType, $message);
+        $this->constructBody($from,$to,$subject, $emailContent);
     }
 
     public function getMail()
@@ -55,8 +56,8 @@ final class MailJetMail implements Mailable
         $this->mail['Subject'] = $subject;
     }
 
-    public function setMessage(string $type, string $message)
+    public function setMessage(EmailContent $emailContent)
     {
-        $this->mail[$type] = $message;
+        $this->mail[$emailContent->getTypeAsText()] = $emailContent->getMessageText();
     }
 }

@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\Classes\Mailers\EmailContentType;
-use App\Classes\Mailers\MailJet\ContentTypes\MailJetEmailContentType;
+use App\Classes\Mailers\EmailContent;
+use App\Classes\Mailers\MailJet\ContentTypes\MailJetEmailContent;
 use App\Classes\Mailers\MailJet\MailJetSender;
 use App\Classes\Mailers\MailServiceFactory;
 use Tests\TestCase;
@@ -21,16 +21,16 @@ class MailJetSenderTest extends TestCase
      */
     public function testMailJetSender()
     {
-        //create text mail known email address
         $isMailSend = $this->senderService
-            ->setMail( $this->sender,  $this->recipients, 'Test', 'TextPart', "test")
+            ->setMail( $this->sender,  $this->recipients, 'Test', new MailJetEmailContent(EmailContent::MAIL_FORMAT_TEXT, "test"))
             ->send();
         $this->assertTrue($isMailSend);
     }
 
     public function testMailJestContentTypes(){
-        $this->assertSame('HTMLPart',  (new MailJetEmailContentType(EmailContentType::MAIL_FORMAT_HTML))->getTypeAsText());
-        $this->assertSame('TextPart',  (new MailJetEmailContentType(EmailContentType::MAIL_FORMAT_TEXT))->getTypeAsText());
+        $this->assertSame('HTMLPart',  (new MailJetEmailContent(EmailContent::MAIL_FORMAT_HTML, ""))->getTypeAsText());
+        $this->assertSame('HTMLPart',  (new MailJetEmailContent(EmailContent::MAIL_FORMAT_MARKDOWN, ""))->getTypeAsText());
+        $this->assertSame('TextPart',  (new MailJetEmailContent(EmailContent::MAIL_FORMAT_TEXT, ""))->getTypeAsText());
     }
 
     public function testMailJestHtmlMessage(){
@@ -39,8 +39,19 @@ class MailJetSenderTest extends TestCase
             $this->sender,
             $this->recipients,
             'html message',
-            EmailContentType::MAIL_FORMAT_HTML,
+            EmailContent::MAIL_FORMAT_HTML,
             '<h3>Test title</h3><ul><li>list item 1</li><li>list item 2</li></ul>'
+        ));
+    }
+
+    public function testMailJetMarkDownMail(){
+        $mailService = MailServiceFactory::getService(MailServiceFactory::MAIL_JET_MAIL_SERVICE);
+        $this->assertTrue($mailService->sendEmail(
+            $this->sender,
+            $this->recipients,
+            'html message',
+            EmailContent::MAIL_FORMAT_MARKDOWN,
+            "# Test list:\n - list item 1\n - list item 2\n"
         ));
     }
 

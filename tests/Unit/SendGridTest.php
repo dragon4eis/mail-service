@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
-use App\Classes\Mailers\EmailContentType;
+use App\Classes\Mailers\EmailContent;
 use App\Classes\Mailers\MailServiceFactory;
-use App\Classes\Mailers\SendGrid\ContentTypes\SendGridEmailContentType;
+use App\Classes\Mailers\SendGrid\ContentTypes\SendGridEmailContent;
 use App\Classes\Mailers\SendGrid\SendGridSender;
 use Tests\TestCase;
 
@@ -22,14 +22,15 @@ class SendGridTest extends TestCase
     public function testSendgridSender()
     {
         $isMailSend = $this->senderService
-            ->setMail($this->sender, $this->recipients, 'Test', 'text/plain', "test")
+            ->setMail($this->sender, $this->recipients, 'Test', new SendGridEmailContent(EmailContent::MAIL_FORMAT_TEXT, "test"))
             ->send();
         $this->assertTrue($isMailSend);
     }
 
     public function testSendGridContentTypes(){
-        $this->assertSame("text/html",  (new SendGridEmailContentType(EmailContentType::MAIL_FORMAT_HTML))->getTypeAsText());
-        $this->assertSame("text/plain",  (new SendGridEmailContentType(EmailContentType::MAIL_FORMAT_TEXT))->getTypeAsText());
+        $this->assertSame("text/html",  (new SendGridEmailContent(EmailContent::MAIL_FORMAT_HTML, ''))->getTypeAsText());
+        $this->assertSame("text/html",  (new SendGridEmailContent(EmailContent::MAIL_FORMAT_MARKDOWN, ''))->getTypeAsText());
+        $this->assertSame("text/plain",  (new SendGridEmailContent(EmailContent::MAIL_FORMAT_TEXT, ''))->getTypeAsText());
     }
 
     public function testSendGridHTMLMail(){
@@ -38,8 +39,19 @@ class SendGridTest extends TestCase
             $this->sender,
             $this->recipients,
             'html message',
-            EmailContentType::MAIL_FORMAT_HTML,
+            EmailContent::MAIL_FORMAT_HTML,
             '<h3>Test title</h3><ul><li>list item 1</li><li>list item 2</li></ul>'
+        ));
+    }
+
+    public function testSendGridMarkDownMail(){
+        $mailService = MailServiceFactory::getService(MailServiceFactory::SEND_GRID_MAIL_SERVICE);
+        $this->assertTrue($mailService->sendEmail(
+            $this->sender,
+            $this->recipients,
+            'html message',
+            EmailContent::MAIL_FORMAT_MARKDOWN,
+            "# Test list:\n - list item 1\n - list item 2\n"
         ));
     }
 

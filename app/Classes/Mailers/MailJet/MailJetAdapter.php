@@ -4,7 +4,7 @@
 namespace App\Classes\Mailers\MailJet;
 
 
-use App\Classes\Mailers\MailJet\ContentTypes\MailJetEmailContentType;
+use App\Classes\Mailers\MailJet\ContentTypes\MailJetEmailContent;
 use App\Classes\Mailers\SendEmail;
 
 final class MailJetAdapter implements SendEmail
@@ -18,9 +18,8 @@ final class MailJetAdapter implements SendEmail
 
     public function sendEmail(array $from, array $recipients, string $subject, string $contentType, string $message): bool
     {
-        $mailType = new MailJetEmailContentType($contentType);
         return $this->sender
-            ->setMail($from, $recipients, $subject, $mailType->getTypeAsText(), $message)
+            ->setMail($from, $recipients, $subject,  new MailJetEmailContent($contentType, $message))
             ->send();
 
     }
