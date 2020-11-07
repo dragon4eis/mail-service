@@ -16,6 +16,17 @@ class EmailRepositoryTest extends TestCase
     protected EmailMessageRepositoryInterface $repository;
     protected EmailMessage $mail;
 
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->repository = new EmailMessageRepository(new EmailMessage());
+        //create random email message
+        $this->mail = EmailMessage::factory()->make();
+        $this->mail->user()->associate(User::first());
+        $this->mail->save();
+    }
+
     public function testListItems()
     {
         //test full length
@@ -126,16 +137,6 @@ class EmailRepositoryTest extends TestCase
         $this->assertTrue(
             $this->repository->delete(EmailMessage::all()->take(5)->pluck('id')->toArray())
         );
-    }
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->repository = new EmailMessageRepository(new EmailMessage());
-        //create random email message
-        $this->mail = EmailMessage::factory()->make();
-        $this->mail->user()->associate(User::first());
-        $this->mail->save();
     }
 
     protected function tearDown(): void

@@ -31,4 +31,9 @@ final class EmailMessageRepository extends BaseRepository implements EmailMessag
         $mail->recipients()->createMany($attributes['recipients']);
         return $mail;
     }
+
+    public function load($id): ?Model
+    {
+        return $this->model->with('recipients')->findOrFail($id);
+    }
 }
