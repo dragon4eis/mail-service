@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\EmailSunt;
+use App\Events\EmailSend;
 use App\Interfaces\EmailLogging;
 use App\Services\EmailLogServiceInterface;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -25,11 +25,13 @@ class LogSuccess
     /**
      * Handle the event.
      *
-     * @param  EmailSunt  $event
+     * @param  EmailSend $event
+     *
      * @return void
      */
-    public function handle(EmailSunt $event)
+    public function handle(EmailSend $event)
     {
+        $event->emailMessage->setSucceedStatus();
         $this->logger->makeItem([
             'recourse' => get_class($event->emailMessage),
             'operation' => EmailLogging::FAILED_TO_SEND_OPERATION,

@@ -30,6 +30,7 @@ class LogFailure
      */
     public function handle(EmailFailed $event)
     {
+        $event->emailMessage->setFailedStatus();
         $this->logger->makeItem([
             'recourse' => get_class($event->emailMessage),
             'operation' => EmailLogging::FAILED_TO_SEND_OPERATION,

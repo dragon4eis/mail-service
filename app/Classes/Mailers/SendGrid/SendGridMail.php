@@ -65,7 +65,7 @@ final class SendGridMail implements Mailable
         //reformat recipients array
         $formattedArray = [];
         foreach ($recipients as $recipient) {
-            $formattedArray[$recipient['email']] = $recipient['name'];
+            $formattedArray[$recipient['address']] = $recipient['name'];
         }
         $this->mail->addTos($formattedArray);
     }

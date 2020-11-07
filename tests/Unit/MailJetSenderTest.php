@@ -65,7 +65,7 @@ class MailJetSenderTest extends TestCase
         ];
         $this->recipients = [
             [
-                'email' => "stev56@abv.bg",
+                'address' => "stev56@abv.bg",
                 'name' => "Example User"
             ]
         ];

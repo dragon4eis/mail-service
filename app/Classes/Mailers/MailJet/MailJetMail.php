@@ -46,7 +46,7 @@ final class MailJetMail implements Mailable
         foreach ($recipients as $recipient) {
             $this->mail['To'][] = [
                 'Name' => $recipient['name'],
-                'Email' => $recipient['email']
+                'Email' => $recipient['address']
             ];
         }
     }

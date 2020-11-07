@@ -23,7 +23,7 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\EmailFailed' => [
             'App\Listeners\LogFailure',
         ],
-        'App\Events\EmailSunt' => [
+        'App\Events\EmailSend' => [
             'App\Listeners\LogSuccess',
         ]
     ];

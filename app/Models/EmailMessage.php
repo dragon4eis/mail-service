@@ -10,7 +10,7 @@ final class EmailMessage extends Model implements EnableEmailStatuses
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected  $guarded = ['id'];
 
     public function recipients()
     {
@@ -47,5 +47,13 @@ final class EmailMessage extends Model implements EnableEmailStatuses
     {
         $this->update(['status' => self::STATUS_MAIL_SUCCESS]);
         return $this;
+    }
+
+    public function getFromAttribute(): array
+    {
+        return [
+            'name' => $this->getAttribute('name'),
+            'address' => $this->getAttribute('address')
+        ];
     }
 }

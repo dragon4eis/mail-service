@@ -4,10 +4,11 @@
 namespace App\Services;
 
 use App\Events\EmailCreate;
+use App\Jobs\SendEmailJob;
 use App\Repositories\EmailMessageRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 
-class EmailMessageService extends BaseRepositoryService implements EmailMessageServiceInterface
+final class EmailMessageService extends BaseRepositoryService implements EmailMessageServiceInterface
 {
     public function __construct(EmailMessageRepositoryInterface $repository)
     {
@@ -18,6 +19,7 @@ class EmailMessageService extends BaseRepositoryService implements EmailMessageS
     {
         $emailMessage = parent::makeItem($this->reformatInputs($inputs));
         EmailCreate::dispatch($emailMessage);
+        SendEmailJob::dispatch($emailMessage);
         return $emailMessage;
     }
 

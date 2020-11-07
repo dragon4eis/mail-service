@@ -46,4 +46,10 @@ interface EnableEmailStatuses
      * @return Model
      */
     public function setSucceedStatus(): Model;
+
+    /**
+     * Return information about sender
+     * @return array
+     */
+    public function getFromAttribute(): array;
 }
