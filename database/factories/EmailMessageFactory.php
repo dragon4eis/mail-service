@@ -23,8 +23,8 @@ class EmailMessageFactory extends Factory
     public function definition()
     {
         return [
-            'from_name' => $this->faker->name,
-            'from_email' => $this->faker->unique()->safeEmail,
+            'name' => $this->faker->name,
+            'address' => $this->faker->unique()->safeEmail,
             'subject' => $this->faker->city,
             'type' => EmailContent::MAIL_FORMAT_TEXT,
             'message' => $this->faker->text

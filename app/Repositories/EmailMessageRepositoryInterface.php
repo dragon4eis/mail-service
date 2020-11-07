@@ -4,7 +4,7 @@
 namespace App\Repositories;
 
 
-interface EmailMessageRepositoryInterface
+interface EmailMessageRepositoryInterface extends RepositoryInterface
 {
 
 }

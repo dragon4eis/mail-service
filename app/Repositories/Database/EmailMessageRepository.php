@@ -10,7 +10,7 @@ use App\Repositories\EmailMessageRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
-class EmailMessageRepository extends BaseDatabaseRepository implements EmailMessageRepositoryInterface
+final class EmailMessageRepository extends BaseRepository implements EmailMessageRepositoryInterface
 {
     public function __construct(EmailMessage $model)
     {
@@ -19,7 +19,6 @@ class EmailMessageRepository extends BaseDatabaseRepository implements EmailMess
 
     public function makeNew(array $attributes): Model
     {
-        $attributes['user_id'] = Auth::user()->getAuthIdentifier();
         $mail = parent::makeNew($attributes);
         $mail->recipients()->createMany($attributes['recipients']);
         return $mail;

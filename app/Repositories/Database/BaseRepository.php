@@ -4,12 +4,12 @@
 namespace App\Repositories\Database;
 
 
+use App\Repositories\RepositoryInterface;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 
-class BaseDatabaseRepository implements DatabaseRepositoryInterface
+class BaseRepository implements RepositoryInterface
 {
     protected Model $model;
 

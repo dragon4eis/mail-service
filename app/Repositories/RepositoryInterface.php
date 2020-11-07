@@ -1,12 +1,12 @@
 <?php
 
 
-namespace App\Repositories\Database;
+namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
-interface DatabaseRepositoryInterface
+interface RepositoryInterface
 {
     /**
      * List the required elements with option to apply additional filters
