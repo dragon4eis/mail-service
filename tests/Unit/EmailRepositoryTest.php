@@ -4,28 +4,15 @@ namespace Tests\Unit;
 
 use App\Models\EmailMessage;
 use App\Models\Recipient;
-use App\Models\User;
 use App\Repositories\Database\EmailMessageRepository;
 use App\Repositories\EmailMessageRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 
 class EmailRepositoryTest extends TestCase
 {
     protected EmailMessageRepositoryInterface $repository;
     protected EmailMessage $mail;
-
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->repository = new EmailMessageRepository(new EmailMessage());
-        //create random email message
-        $this->mail = EmailMessage::factory()->make();
-        $this->mail->user()->associate(User::first());
-        $this->mail->save();
-    }
 
     public function testListItems()
     {
@@ -53,10 +40,8 @@ class EmailRepositoryTest extends TestCase
 
     public function testCreateNewItem()
     {
-        $this->actingAs(User::first());
         $inputArray = EmailMessage::factory()->make()->toArray();
-        $inputArray['user_id'] = Auth::user()->getAuthIdentifier();
-        $inputArray['recipients'] =  Recipient::factory(10)->make()->toArray();
+        $inputArray['recipients'] = Recipient::factory(10)->make()->toArray();
         $newItem = $this->repository->makeNew($inputArray);
 
         //check the item class instance
@@ -137,6 +122,15 @@ class EmailRepositoryTest extends TestCase
         $this->assertTrue(
             $this->repository->delete(EmailMessage::all()->take(5)->pluck('id')->toArray())
         );
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->repository = new EmailMessageRepository(new EmailMessage());
+        //create random email message
+        $this->mail = EmailMessage::factory()->make();
+        $this->mail->save();
     }
 
     protected function tearDown(): void

@@ -16,12 +16,6 @@ final class EmailMessage extends Model implements EnableEmailStatuses
     {
         return $this->hasMany(Recipient::class);
     }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
     /**
      * Get email message status
      *

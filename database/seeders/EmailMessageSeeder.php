@@ -25,7 +25,6 @@ class EmailMessageSeeder extends Seeder
        foreach (User::all() as $user){
            for ($i = 0; $i < $this->limiter; $i++){
                $mail = EmailMessage::factory()->make();
-               $mail->user()->associate($user);
                $mail->save();
                $mail->recipients()->createMany( Recipient::factory($this->limiter)->make()->toArray());
            }

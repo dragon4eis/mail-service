@@ -17,9 +17,6 @@ class EmailMessageServiceTest extends TestCase
 
     public function testReformatInput()
     {
-
-        $this->actingAs(User::first());
-
         //set unfinished input array
         $inputs = [
             'subject' => 'test subject',
@@ -41,8 +38,6 @@ class EmailMessageServiceTest extends TestCase
 
     public function testSaveEmail()
     {
-        $this->actingAs(User::first());
-
         //set inputs array
         $inputs = [
             'subject' => 'test subject',
@@ -74,7 +69,6 @@ class EmailMessageServiceTest extends TestCase
 
     public function testEditEmail()
     {
-        $this->actingAs(User::first());
 
         //get random element
         $inputs = (EmailMessage::with('recipients')->first())->toArray();
