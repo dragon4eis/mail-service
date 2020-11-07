@@ -4,7 +4,7 @@
 namespace App\Services;
 
 
-interface EmailLogServiceInterface
+interface EmailLogServiceInterface extends RepositoryServiceInterface
 {
 
 }
