@@ -5,9 +5,12 @@ namespace App\Services;
 
 
 use App\Classes\Mailers\MailServiceFactory;
-
 use App\Classes\Mailers\SendEmail;
+use App\Events\EmailSend;
+use App\Exceptions\EmailMessageNotSend;
 use App\Models\EmailMessage;
+use Exception;
+use Illuminate\Support\Facades\Log;
 
 final class MailSenderService implements MailSenderInterface
 {
@@ -15,30 +18,52 @@ final class MailSenderService implements MailSenderInterface
 
     public function withMailService(int $service): MailSenderInterface
     {
-        $this->sender = MailServiceFactory::getService($service);
-        return  $this;
+        Log::info($service);
+        throw new Exception("mail service not found");
+//        $this->sender = MailServiceFactory::getService($service);
+//        return $this;
     }
 
     public function sendMail(EmailMessage $emailMessage): bool
     {
-        throw_if(
-            !$this->sender->sendEmail(
-                $emailMessage->from,
-                $emailMessage->recipients->toArray(),
-                $emailMessage->subject,
-                $emailMessage->type,
-                $emailMessage->message
-            ),
-            new \Exception("Email was not send")
+
+        $mailIsSend = $this->sender->sendEmail(
+            $emailMessage->from,
+            $emailMessage->recipients->toArray(),
+            $emailMessage->subject,
+            $emailMessage->type,
+            $emailMessage->message
         );
-        return true;
+        if($mailIsSend) {
+            EmailSend::dispatch($emailMessage);
+            return true;
+        } else {
+            throw new EmailMessageNotSend();
+        }
     }
 
+    /**
+     * Returns the index for the fallback service
+     *
+     * @param int $attempts
+     *
+     * @return int
+     */
+    public function getFallBackService(int $attempts): int
+    {
+        $mailers = $this->getSupportedMailers();
+
+        //to get the fallback option we need the failures at are one less the attempts
+        return $this->getSupportedMailers()[abs($attempts - 1) % count($mailers)];
+    }
+
+    /**
+     * Gets the supported mailing service for the service factory
+     *
+     * @return array
+     */
     public function getSupportedMailers(): array
     {
-       return [
-            'SendGrid' =>   MailServiceFactory::SEND_GRID_MAIL_SERVICE,
-            'MailJet' => MailServiceFactory::MAIL_JET_MAIL_SERVICE
-       ];
+        return MailServiceFactory::getEnabledSenders();
     }
 }

@@ -18,7 +18,10 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         'App\Events\EmailCreate' => [
-            'App\Listeners\LogCreationOperation'
+            'App\Listeners\LogCreate'
+        ],
+        'App\Events\EmailProcessing' => [
+            'App\Listeners\LogProcessing',
         ],
         'App\Events\EmailFailed' => [
             'App\Listeners\LogFailure',

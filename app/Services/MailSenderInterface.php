@@ -13,4 +13,6 @@ interface MailSenderInterface
     public function sendMail(EmailMessage $emailMessage): bool;
 
     public function getSupportedMailers(): array;
+
+    public function getFallBackService(int $attempts): int;
 }

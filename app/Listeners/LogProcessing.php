@@ -2,13 +2,13 @@
 
 namespace App\Listeners;
 
-use App\Events\EmailFailed;
+use App\Events\EmailProcessing;
 use App\Interfaces\EmailLogging;
 use App\Services\EmailLogServiceInterface;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-final class LogFailure
+final class LogProcessing
 {
     private EmailLogServiceInterface $logger;
 
@@ -25,17 +25,17 @@ final class LogFailure
     /**
      * Handle the event.
      *
-     * @param  EmailFailed  $event
+     * @param  EmailProcessing  $event
      * @return void
      */
-    public function handle(EmailFailed $event)
+    public function handle(EmailProcessing $event)
     {
-        $event->emailMessage->setFailedStatus();
+        $event->emailMessage->setInQueueStatus();
         $this->logger->makeItem([
             'recourse' => get_class($event->emailMessage),
-            'operation' => EmailLogging::FAILED_TO_SEND_OPERATION,
+            'operation' => EmailLogging::PROCESSING_EMAIL_OPERATION,
             'email_message_id' => $event->emailMessage->id,
-            'description' => 'Email sending failed'
+            'description' => 'Email message was send successfully!'
         ]);
     }
 }

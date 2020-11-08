@@ -22,4 +22,15 @@ class MailServiceFactory
             }
         }
     }
+
+    /**
+     * Returns array of services that can be used for the fallback logic
+     * @return int[]
+     */
+    public static function getEnabledSenders(){
+        return [
+            self::SEND_GRID_MAIL_SERVICE,
+            self::MAIL_JET_MAIL_SERVICE
+        ];
+    }
 }

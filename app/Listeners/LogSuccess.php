@@ -8,9 +8,9 @@ use App\Services\EmailLogServiceInterface;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class LogSuccess
+final class LogSuccess
 {
-    public $logger;
+    private EmailLogServiceInterface $logger;
 
     /**
      * Create the event listener.

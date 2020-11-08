@@ -9,9 +9,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
 
-class LogCreationOperation
+final class LogCreate
 {
-    public $logger;
+    private EmailLogServiceInterface $logger;
 
     /**
      * Create the event listener.
