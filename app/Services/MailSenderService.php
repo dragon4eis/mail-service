@@ -49,7 +49,7 @@ final class MailSenderService implements MailSenderInterface
     {
         $mailers = $this->getSupportedMailers();
 
-        return $this->getSupportedMailers()[($attempts > 1) ? $attempts % sizeof($mailers) : 0];
+        return $mailers[($attempts > 1) ? $attempts % sizeof($mailers) : 0];
     }
 
     /**
