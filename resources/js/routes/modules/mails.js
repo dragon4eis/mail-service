@@ -3,10 +3,10 @@ import MailPreview from "../../components/Pages/MailPreview";
 import MailListPage from "../../components/MailListPage";
 import {makeRedirect} from "../config";
 
-const storeModule = 'todo';
+const storeModule = 'mail';
 
 export default {
-    path: 'todo',
+    path: 'mail',
     name: `${storeModule}-index`,
     redirect: makeRedirect(`${storeModule}-create`),
     component: MailListPage,

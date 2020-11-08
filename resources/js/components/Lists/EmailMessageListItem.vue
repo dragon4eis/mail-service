@@ -1,6 +1,6 @@
 <template>
     <router-link
-        :to="{name:'todo-select', params:{mail_id: mail.id}}"
+        :to="{name:'mail-select', params:{mail_id: mail.id}}"
         class="list-group-item"
         tag="li">
         <div class="d-inline" v-text="mail.subject"></div>

@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="d-inline">Mails</h3>
-                    <router-link :to="{name: 'todo-create'}"
+                    <router-link :to="{name: 'mail-create'}"
                                  class="btn btn-success float-right"
                                  tag="button"> NEW
                     </router-link>
