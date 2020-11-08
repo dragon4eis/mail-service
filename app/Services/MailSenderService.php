@@ -18,10 +18,8 @@ final class MailSenderService implements MailSenderInterface
 
     public function withMailService(int $service): MailSenderInterface
     {
-        Log::info($service);
-        throw new Exception("mail service not found");
-//        $this->sender = MailServiceFactory::getService($service);
-//        return $this;
+        $this->sender = MailServiceFactory::getService($service);
+        return $this;
     }
 
     public function sendMail(EmailMessage $emailMessage): bool
@@ -54,7 +52,7 @@ final class MailSenderService implements MailSenderInterface
         $mailers = $this->getSupportedMailers();
 
         //to get the fallback option we need the failures at are one less the attempts
-        return $this->getSupportedMailers()[abs($attempts - 1) % count($mailers)];
+        return $this->getSupportedMailers()[abs($attempts - 1) % sizeof($mailers)];
     }
 
     /**

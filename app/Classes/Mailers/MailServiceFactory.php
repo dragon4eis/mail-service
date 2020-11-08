@@ -28,9 +28,10 @@ class MailServiceFactory
      * @return int[]
      */
     public static function getEnabledSenders(){
+        //changing constants order will determine service priority
         return [
-            self::SEND_GRID_MAIL_SERVICE,
-            self::MAIL_JET_MAIL_SERVICE
+            self::MAIL_JET_MAIL_SERVICE,
+            self::SEND_GRID_MAIL_SERVICE
         ];
     }
 }

@@ -27,7 +27,8 @@ class EmailMessageFactory extends Factory
             'address' => $this->faker->unique()->safeEmail,
             'subject' => $this->faker->city,
             'type' => EmailContent::MAIL_FORMAT_TEXT,
-            'message' => $this->faker->text
+            'message' => $this->faker->text,
+            'status' => $this->faker->randomElement([EmailMessage::STATUS_MAIL_FAILED, EmailMessage::STATUS_MAIL_SUCCESS])
         ];
     }
 }

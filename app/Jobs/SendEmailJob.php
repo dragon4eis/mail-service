@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Classes\Mailers\MailServiceFactory;
 use App\Events\EmailFailed;
 use App\Events\EmailProcessing;
 use App\Models\EmailMessage;
@@ -18,9 +19,11 @@ final class SendEmailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    private const MAXIMUM_SENDERS_ROTATIONS = 3;
+
     public $tries = 5;
 
-    public $emailMessage;
+    public EmailMessage $emailMessage;
 
     /**
      * Create a new job instance.
@@ -31,6 +34,7 @@ final class SendEmailJob implements ShouldQueue
     {
         $this->emailMessage = $emailMessage;
         EmailProcessing::dispatch($emailMessage);
+        $this->tries = count(MailServiceFactory::getEnabledSenders()) * self::MAXIMUM_SENDERS_ROTATIONS;
     }
 
     /**
