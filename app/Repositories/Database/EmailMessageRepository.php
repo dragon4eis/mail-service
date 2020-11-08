@@ -34,6 +34,6 @@ final class EmailMessageRepository extends BaseRepository implements EmailMessag
 
     public function load($id): ?Model
     {
-        return $this->model->with('recipients')->findOrFail($id);
+        return $this->model->with('recipients', 'logs')->findOrFail($id);
     }
 }

@@ -7,6 +7,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- API Token -->
+    @if(auth()->check())
+        <meta name="api-token" content="{{ auth()->user()->api_token }}">
+    @endif
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
@@ -80,4 +85,11 @@
         </main>
     </div>
 </body>
+<script>
+    window.Laravel = {!! json_encode([
+       'csrfToken' => csrf_token(),
+       'apiToken' => auth()->user()->api_token ?? null,
+   ]) !!};
+</script>
+
 </html>

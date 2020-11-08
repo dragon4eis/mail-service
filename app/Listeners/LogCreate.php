@@ -35,7 +35,7 @@ final class LogCreate
             'recourse' => get_class($event->emailMessage),
             'operation' => EmailLogging::CREATE_OPERATION,
             'email_message_id' => $event->emailMessage->id,
-            'description' => 'Email was created :' . json_encode($event->emailMessage, true)
+            'description' => 'Email was created'
         ]);
     }
 }

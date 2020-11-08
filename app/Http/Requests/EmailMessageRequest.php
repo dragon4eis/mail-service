@@ -32,7 +32,7 @@ class EmailMessageRequest extends FormRequest
             'message' => 'required',
             'type' => 'required|in:' . implode(",", $this->supportedTypes()),
             'recipients' => 'required|array',
-            'recipients.*.name' => 'string',
+            'recipients.*.name' => 'string|nullable',
             'recipients.*.address' => 'required|email'
         ];
     }

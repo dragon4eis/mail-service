@@ -19,13 +19,10 @@ final class SendGridMail implements Mailable
     /**
      * SendGridMail constructor.
      *
-     * @param array  $from
-     * @param array  $to
-     * @param string $subject
-     * @param string $contentType
-     * @param string $message
-     *
-     * @throws TypeException
+     * @param array        $from
+     * @param array        $to
+     * @param string       $subject
+     * @param EmailContent $emailContent
      */
     public function __construct(array $from, array $to, string $subject, EmailContent $emailContent)
     {

@@ -9,8 +9,6 @@ use App\Classes\Mailers\SendEmail;
 use App\Events\EmailSend;
 use App\Exceptions\EmailMessageNotSend;
 use App\Models\EmailMessage;
-use Exception;
-use Illuminate\Support\Facades\Log;
 
 final class MailSenderService implements MailSenderInterface
 {
@@ -32,7 +30,7 @@ final class MailSenderService implements MailSenderInterface
             $emailMessage->type,
             $emailMessage->message
         );
-        if($mailIsSend) {
+        if ($mailIsSend) {
             EmailSend::dispatch($emailMessage);
             return true;
         } else {
@@ -51,8 +49,7 @@ final class MailSenderService implements MailSenderInterface
     {
         $mailers = $this->getSupportedMailers();
 
-        //to get the fallback option we need the failures at are one less the attempts
-        return $this->getSupportedMailers()[abs($attempts - 1) % sizeof($mailers)];
+        return $this->getSupportedMailers()[($attempts > 1) ? $attempts % sizeof($mailers) : 0];
     }
 
     /**

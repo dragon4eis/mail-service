@@ -27,13 +27,11 @@ class EmailMessageController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param Request $request
-     *
      * @return AnonymousResourceCollection
      */
-    public function index(Request $request)
+    public function index()
     {
-        return EmailMessageResource::collection($this->service->listItems($request->get('filters') ?? [], $request->get('orderBy') ?? []));
+        return EmailMessageResource::collection($this->service->listItems());
     }
 
     /**
