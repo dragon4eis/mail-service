@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.4|^8.0",
+        "ext-json": "*",
         "doctrine/dbal": "^2.12",
         "erusev/parsedown": "^1.7",
         "fideloper/proxy": "^4.4",
@@ -18,8 +19,8 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.0",
         "mailjet/mailjet-apiv3-php": "^1.5",
-        "sendgrid/sendgrid": "~7",
-      "ext-json": "*"
+        "predis/predis": "^1.1",
+        "sendgrid/sendgrid": "~7"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

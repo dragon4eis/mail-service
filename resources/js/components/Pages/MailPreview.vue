@@ -50,7 +50,7 @@ export default {
     },
     methods: {
         loadItem() {
-            this.load = true;
+            this.loading = true;
             if (loadCancel) {
                 loadCancel.cancel('canceling previous request and making a new one...');
             }
@@ -62,7 +62,7 @@ export default {
                 })
                 .catch(console.error)
                 .finally(() => {
-                    this.load = false;
+                    this.loading = false;
                 })
 
         }

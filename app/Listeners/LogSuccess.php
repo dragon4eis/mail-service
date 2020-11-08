@@ -36,7 +36,7 @@ final class LogSuccess
             'recourse' => get_class($event->emailMessage),
             'operation' => EmailLogging::SEND_EMAIL_OPERATION,
             'email_message_id' => $event->emailMessage->id,
-            'description' => 'Email message was send successfully!'
+            'description' => 'Email message was send successfully'
         ]);
     }
 }

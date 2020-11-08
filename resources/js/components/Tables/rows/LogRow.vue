@@ -3,8 +3,7 @@
         <th scope="row" v-text="log.created_at"></th>
         <td v-text="log.recourse"></td>
         <td v-text="log.operation"></td>
-        <td class="description" :title="log.description">
-            <span v-text="log.description" ></span>
+        <td :title="log.description"  v-text="log.description">
         </td>
     </tr>
 </template>
@@ -22,8 +21,4 @@ export default {
 </script>
 
 <style scoped>
-    td.description {
-        width: 150px;
-        max-width: 300px;
-    }
 </style>

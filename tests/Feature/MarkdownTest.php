@@ -19,9 +19,5 @@ class MarkdownTest extends TestCase
         $parsedText = (new MarkdownToHtmlParser())->reFormat($markdownText);
 
         $this->assertSame($parsedText, "<h1>Test list:</h1>\n<ul>\n<li>list item 1</li>\n<li>list item 2</li>\n</ul>");
-
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
     }
 }

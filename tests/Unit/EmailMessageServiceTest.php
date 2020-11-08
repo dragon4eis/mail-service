@@ -87,12 +87,12 @@ class EmailMessageServiceTest extends TestCase
     public function testFindEmail()
     {
         $this->assertSame(
-            ($mail = EmailMessage::with('recipients')->first())->toArray(),
+            ($mail = EmailMessage::with('recipients', 'logs')->first())->toArray(),
             $this->service->findItem($mail->id)->toArray(),
         );
 
         $this->assertSame(
-            (EmailMessage::with('recipients')->first())->recipients->count(),
+            (EmailMessage::with('recipients',  'logs')->first())->recipients->count(),
             $this->service->findItem($mail->id)->recipients->count()
         );
     }
