@@ -34,7 +34,7 @@ class EmailLogTest extends TestCase
             'message' => Factory::create()->realText(),
             'recipients' => [
                 [
-                    'address' => 'stev56@abv.bg'
+                    'address' => config('mail.mail_for_tests')
                 ]
             ]
         ];

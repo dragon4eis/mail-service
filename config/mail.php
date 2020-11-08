@@ -107,6 +107,13 @@ return [
         ],
     ],
 
+    /*
+     | --------------------------------------------------------------------------
+     |  External Email Providers
+     | --------------------------------------------------------------------------
+     |
+     */
+
     'automated_providers' => [
         'sendgrid' => [
             'api_key' => env('SENDGRID_API_KEY')
@@ -115,5 +122,8 @@ return [
             'public_api_key' => env('MJ_APIKEY_PUBLIC'),
             'private_api_key' => env('MJ_APIKEY_PRIVATE'),
         ]
-    ]
+    ],
+
+    'mail_for_tests' => env('MAIL_FOR_TESTS', 'test@example.com')
+
 ];

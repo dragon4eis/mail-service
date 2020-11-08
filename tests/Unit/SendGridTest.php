@@ -65,7 +65,7 @@ class SendGridTest extends TestCase
         ];
         $this->recipients = [
             [
-                'address' => "stev56@abv.bg",
+                'address' => config('mail.mail_for_tests'),
                 'name' => "Example User"
             ]
         ];

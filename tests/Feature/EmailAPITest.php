@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Classes\Mailers\EmailContent;
 use App\Models\EmailMessage;
 use App\Models\Recipient;
 use App\Models\User;
@@ -14,9 +15,12 @@ class EmailAPITest extends TestCase
 {
 
     private array $inputs;
+    
+    private User $user;
 
     public function testCreate(){
-        $response = $this->postJson('/api/mail', $this->inputs);
+        $response = $this->actingAs($this->user, 'api')
+            ->postJson('/api/mail', $this->inputs);
 
         $response->assertStatus(201)
             ->assertJsonCount(2)
@@ -25,35 +29,43 @@ class EmailAPITest extends TestCase
 
     public function testList(){
 
-        $response = $this->get('/api/mail');
+        $response = $this->actingAs($this->user, 'api')
+            ->get('/api/mail');
 
         $response->assertStatus(200);
     }
 
     public function testRead(){
-        $message =  EmailMessage::order_by('id', 'desc')->first();
+        $message =  EmailMessage::orderBy('id', 'desc')->first();
 
-        $response = $this->getJson("/api/mail/{$message->id}");
+        $response = $this
+            ->actingAs($this->user, 'api')
+            ->getJson("/api/mail/{$message->id}");
 
         $response->assertStatus(200)
-            ->assertJson(['id' => $message->id]);
+            ->assertJsonFragment(["id" => $message->id]);
     }
 
     public function testUpdate(){
         $newName = 'Test Not Real Name';
-        $message =  EmailMessage::order_by('id', 'desc')->first();
+        $message =  EmailMessage::orderBy('id', 'desc')->first();
         $this->inputs['subject'] = $newName;
 
-        $response = $this->putJson("/api/mail/{$message->id}", $this->inputs);
+        $response = $this
+            ->actingAs($this->user, 'api')
+            ->putJson("/api/mail/{$message->id}", $this->inputs);
+
 
         $response->assertStatus(200)
             ->assertJson(['resource' =>['subject' => $newName]]);
     }
 
     public function testDelete(){
-        $message =  EmailMessage::order_by('id', 'desc')->first();
+        $message =  EmailMessage::orderBy('id', 'desc')->first();
 
-        $response = $this->delete("/api/mail/{$message->id}");
+        $response = $this
+            ->actingAs($this->user, 'api')
+            ->delete("/api/mail/{$message->id}");
 
         $response->assertStatus(200);
     }
@@ -61,7 +73,7 @@ class EmailAPITest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->actingAs(User::first());
+        $this->user = User::findOrFail(1);
         $this->setEmailMessage();
     }
 
@@ -71,10 +83,11 @@ class EmailAPITest extends TestCase
     private function setEmailMessage(){
         $this->inputs = [
             'subject' => 'test subject',
+            'type' => EmailContent::MAIL_FORMAT_TEXT,
             'message' => Factory::create()->realText(),
             'recipients' => [
                 [
-                    'address' => 'random@exmaple.com'
+                    'address' => config('mail.mail_for_tests')
                 ]
             ]
         ];
