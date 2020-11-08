@@ -27,7 +27,7 @@ To be able to add message formats that are not natively supported in the provide
 For both Mailjet and Sendgrid there are strategies that implemented interface **EmailContent**. 
 It declares methods:
 ```php
-     public function getTypeAsText(): string;   
+     public function getTypeAsText(): string;  
 ```
 ```php
     public function getMessageText(): string;
@@ -74,7 +74,7 @@ This Job is dispatched in the **EmailMessageService** when new email is created:
         return $emailMessage;
     }
 ````
-The system automatically logs the states of the email message by adding events nad log listeners
+The system automatically logs the states of the email message by adding events and log listeners
 ```php
     //...
     'App\Events\EmailCreate' => [
