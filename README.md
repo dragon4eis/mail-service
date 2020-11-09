@@ -137,17 +137,21 @@ email:send can be used to send email message only to one recipient. In case of w
 1. Add api keys to .env fail;
 2. To use SendGrid add your API key to **SENDGRID_API_KEY** in your *.env*;
 3. To use MailJet you need to set 2 apy keys **MJ_APIKEY_PUBLIC** and **MJ_APIKEY_PRIVATE** in your *.env* fail;
-4. Create Laradock containers:
+4. Go to laradock folder and create Laradock containers:
 
-    ``
-        docker-compose up -d php-worker workspace nginx redis postgres pgadmin
-    ``
-5. To test the service database needs to be seeded:
+````shell script
+  docker-compose -f production-docker-compose.yml up -d
+````
+5. To enter the docker workplace container
+```shell script
+  docker-compose exec workspace bash
+```   
+6. To test the service database needs to be seeded:
 
-    ``
-        php artisan migrate;
-        php artisan db:seed;
-    ``
+````shell script
+    php artisan migrate;
+    php artisan db:seed;
+````
 
 ## License
 
