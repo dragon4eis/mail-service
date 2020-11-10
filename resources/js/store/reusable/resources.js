@@ -10,16 +10,16 @@ export default function (urlAddress) {
             }
         },
         mutations: {
-            setAll(state, newDataSet) {
+            SET_ALL(state, newDataSet) {
                 state.all = newDataSet
             },
-            setLoadingResource(state, newState) {
+            SET_LOADING_RESOURCE(state, newState) {
                 state.isAllLoading = newState
             },
-            addNewResource(state, newResource) {
+            ADD_NEW_RESOURCE(state, newResource) {
                 state.all.unshift(newResource)
             },
-            updateExistingResource(state, resource){
+            UPDATE_EXISTING_RESOURCE(state, resource){
                 state.all.forEach((original, index) => {
                     if (resource.id === original.id) {
                         Vue.set(state.all, index, resource)
@@ -29,12 +29,12 @@ export default function (urlAddress) {
         },
         actions: {
             all({commit}, search_name = "") {
-                commit('setLoadingResource', true);
+                commit('SET_LOADING_RESOURCE', true);
                 return axios
                     .get(urlAddress,  {params: {search_name}})
-                    .then(response => commit('setAll', response.data.data))
+                    .then(response => commit('SET_ALL', response.data.data))
                     .catch(console.error)
-                    .finally(() => commit('setLoadingResource', false))
+                    .finally(() => commit('SET_LOADING_RESOURCE', false))
             }
         }
     }

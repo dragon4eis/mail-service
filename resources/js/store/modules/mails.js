@@ -11,14 +11,14 @@ export default {
         loading: false,
     },
     mutations: {
-        setElementLoading(state, loading) {
+        SET_ELEMENT_LOADING(state, loading) {
             state.loading = loading
         },
     },
     getters: {},
     actions:{
         submit({state, commit, dispatch}, form) {
-            commit('setElementLoading', true);
+            commit('SET_ELEMENT_LOADING', true);
             let requestType = (form.id) ? "put" : "post";
             let url = `/api/mail/${(requestType === "post" ? '' : form.id)}`;
             return new Promise(((resolve, reject, ) => {
@@ -27,7 +27,7 @@ export default {
                         commit('clearErrors');
                         // dispatch('all');
                         console.log( response.data.resource)
-                        commit(requestType === "post" ? 'addNewResource' : 'updateExistingResource', response.data.resource);
+                        commit(requestType === "post" ? 'ADD_NEW_RESOURCE' : 'UPDATE_EXISTING_RESOURCE', response.data.resource);
                         resolve(response);
                     })
                     .catch(error => {
@@ -38,7 +38,7 @@ export default {
                         reject(error)
                     })
                     .finally(() => {
-                        commit('setElementLoading', false);
+                        commit('SET_ELEMENT_LOADING', false);
                     })
             }))
         },
