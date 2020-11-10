@@ -122,19 +122,25 @@ To create email message execute command
 ```shell script
     php artisan email:send  <address> <subject> <message> [<type>]
 ````
-email:send can be used to send email message only to one recipient. In case of wrong type, user will be prompt to select from an array of correct ones;
+Input Parameters:
+1. **address** - email address of the recipient;
+2. **subject** - emils' subject
+3. **message** - the message you want to send;
+4. **type** -type of the email; can be text, html or markdown
 
-**EmailMessageController** provides the user with api functionality
+email:send can be used to send email message only to one recipient. In case of wrong type, user will be prompt to select from an array of correct ones.
+
+**EmailMessageController** provides the user with api methods for creating, reading (one or multiple), updating and deleting email messages in the system. The project provides with basic UI that implements only read and create APIs.
 
 ## Feature functionalities
-- Push notification to users;
-- Service policy to control API usage;
-- More email providers;
-- Adding queue priority;
+- [ ]  Push notification to users;
+- [ ]  Service policy to control API usage;
+- [ ]  More email providers;
+- [ ]  Adding queue priority;
 
 ## Installation
 
-1. Add api keys to .env fail;
+1. Add api keys to .env file;
 2. To use SendGrid add your API key to **SENDGRID_API_KEY** in your *.env*;
 3. To use MailJet you need to set 2 apy keys **MJ_APIKEY_PUBLIC** and **MJ_APIKEY_PRIVATE** in your *.env* fail;
 4. Go to laradock folder and create Laradock containers:
