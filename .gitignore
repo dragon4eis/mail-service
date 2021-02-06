@@ -19,3 +19,6 @@ yarn-error.log
 /.idea/vcs.xml
 /.idea/webResources.xml
 /.idea/workspace.xml
+/public/mix-manifest.json
+/public/js/
+/public/css/
