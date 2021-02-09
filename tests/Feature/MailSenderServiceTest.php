@@ -8,6 +8,7 @@ use App\Classes\Mailers\SendEmail;
 use App\Models\EmailMessage;
 use App\Repositories\Database\EmailMessageRepository;
 use App\Services\EmailMessageService;
+use App\Services\EmailMessageServiceInterface;
 use App\Services\MailSenderService;
 use Faker\Factory;
 use Illuminate\Database\Eloquent\Model;
@@ -58,7 +59,7 @@ class MailSenderServiceTest extends TestCase
     {
         parent::setUp();
         $this->mailSender = new MailSenderService();
-        $this->emailService = new EmailMessageService(new EmailMessageRepository(new EmailMessage()));
+        $this->emailService = app(EmailMessageServiceInterface::class);//new EmailMessageService(new EmailMessageRepository(new EmailMessage()));
         $this->inputs = [
             'subject' => 'test subject',
             'type' => EmailContent::MAIL_FORMAT_TEXT,

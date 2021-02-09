@@ -6,6 +6,7 @@ use App\Interfaces\EmailLogging;
 use App\Models\EmailLog;
 use App\Repositories\Database\EmailLogRepository;
 use App\Services\EmailLogService;
+use App\Services\EmailLogServiceInterface;
 use Faker\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Tests\TestCase;
@@ -17,7 +18,7 @@ class EmailLoggingTest extends TestCase
     {
         parent::setUp();
 
-        $this->service = new EmailLogService(new EmailLogRepository(new EmailLog()));
+        $this->service = app(EmailLogServiceInterface::class);// new EmailLogService(new EmailLogRepository(new EmailLog()));
     }
 
     public function testSavingLog()

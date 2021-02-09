@@ -10,6 +10,7 @@ use App\Events\EmailSend;
 use App\Models\EmailMessage;
 use App\Repositories\Database\EmailMessageRepository;
 use App\Services\EmailMessageService;
+use App\Services\EmailMessageServiceInterface;
 use Faker\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -60,7 +61,7 @@ class EmailLogTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->service = new  EmailMessageService(new EmailMessageRepository(new EmailMessage()));
+        $this->service = app(EmailMessageServiceInterface::class);
         Event::fake();
         Queue::fake();
     }

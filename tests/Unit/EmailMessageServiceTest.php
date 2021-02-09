@@ -135,7 +135,7 @@ class EmailMessageServiceTest extends TestCase
     {
         parent::setUp();
 
-        $this->service = new  EmailMessageService(new EmailMessageRepository(new EmailMessage()));
+        $this->service = app(EmailMessageServiceInterface::class);
     }
 
 
